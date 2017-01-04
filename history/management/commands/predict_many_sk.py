@@ -4,7 +4,6 @@ from django.conf import settings
 from history.tools import print_and_log
 from multiprocessing import Pool
 
-
 def do_classifier_test(name, ticker, data_set_inputs, granularity, min_back, timedelta_back):
     try:
         ct = ClassifierTest(name=name,
@@ -56,7 +55,15 @@ class Command(BaseCommand):
                         for timedelta_back_in_granularity_increments in \
                                 conf['timedelta_back_in_granularity_increments']:
                             for name in conf['name']:
-                                pool.apply_async(do_classifier_test, args=(
+                                do_classifier_test( name,
+                                    ticker,
+                                    datasetinputs,
+                                    granularity,
+                                    min_back,
+                                    timedelta_back_in_granularity_increments
+                                )
+                                '''
+                                pool.apply(do_classifier_test, args=(
                                     name,
                                     ticker,
                                     datasetinputs,
@@ -64,6 +71,7 @@ class Command(BaseCommand):
                                     min_back,
                                     timedelta_back_in_granularity_increments
                                 ), callback=self._log_results)
+                                '''
         print("All SK jobs queued")
         pool.close()
         pool.join()

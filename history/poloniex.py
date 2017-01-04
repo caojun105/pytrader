@@ -1,5 +1,6 @@
 import urllib
-import urllib2
+#import urllib2
+from urllib.request import urlopen
 import json
 import time
 import hmac
@@ -31,16 +32,16 @@ class poloniex:
     def api_query(self, command, req={}):
 
         if(command == "returnTicker" or command == "return24Volume"):
-            ret = urllib2.urlopen(urllib2.Request('https://poloniex.com/public?command=' + command))
-            return json.loads(ret.read())
+            ret = urlopen('https://poloniex.com/public?command=' + command)
+            return json.loads(ret.read().decode('utf8'))
         elif(command == "returnOrderBook"):
-            ret = urllib2.urlopen(urllib2.Request(
+            ret = urlopen((
                 'http://poloniex.com/public?command=' + command + '&currencyPair=' + str(req['currencyPair'])))
-            return json.loads(ret.read())
+            return json.loads(ret.read().decode('utf8'))
         elif(command == "returnMarketTradeHistory"):
-            ret = urllib2.urlopen(urllib2.Request('http://poloniex.com/public?command=' +
+            ret = urlopen(('http://poloniex.com/public?command=' +
                                                   "returnTradeHistory" + '&currencyPair=' + str(req['currencyPair'])))
-            return json.loads(ret.read())
+            return json.loads(ret.read().decode('utf8'))
         else:
             req['command'] = command
             req['nonce'] = int(time.time()*1000)
@@ -52,7 +53,7 @@ class poloniex:
                 'Key': self.APIKey
             }
 
-            ret = urllib2.urlopen(urllib2.Request('https://poloniex.com/tradingApi', post_data, headers))
+            ret = urlopen(('https://poloniex.com/tradingApi', post_data, headers))
             jsonRet = json.loads(ret.read())
             return self.post_process(jsonRet)
 

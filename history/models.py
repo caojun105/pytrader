@@ -35,8 +35,6 @@ np.random.seed(0)
 
 def get_time():
     return localtime(timezone.now())
-
-
 class TimeStampedModel(models.Model):
     created_on = models.DateTimeField(null=False, default=get_time, db_index=True)
     modified_on = models.DateTimeField(null=False, default=get_time)

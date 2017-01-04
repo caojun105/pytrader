@@ -19,6 +19,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
+API_KEY='QQD8JYIY-65YG7P4E-V1A9RNA7-1TI6R967'
+API_SECRET = '388a652871e98efdb569dfafebd7b8700ef74815a6f6d27f569954117b8eed6ce4e6adb27e99eb37ddd825048eca96c776691463db44775f2ec61f38a2dc6dc8'
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '))iy*8&jyl3s6m58g(z=6xo5yq^hl^-ppk$v-h-pd#@fhn&k@0'
 
@@ -26,9 +29,9 @@ SECRET_KEY = '))iy*8&jyl3s6m58g(z=6xo5yq^hl^-ppk$v-h-pd#@fhn&k@0'
 DEBUG = True
 MAKE_TRADES = True
 
-ALLOWED_HOSTS = ['trader.owocki.com', '45.55.42.224']
+#ALLOWED_HOSTS = ['trader.owocki.com', '45.55.42.224']
 
-
+ALLOWED_HOSTS=[]
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'history',
-    'chartit',
+    #'chartit',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -282,4 +285,4 @@ try:
     from pypolo.local_settings import *  # NOQA
     INSTALLED_APPS += DEBUG_APPS
 except (ImportError, NameError) as exp:
-    print 'Failed to load pypolo/local_settings.py because: %s' % exp
+    print('Failed to load pypolo/local_settings.py because: %s' % exp)

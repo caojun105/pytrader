@@ -6,7 +6,7 @@ MAKE_TRADES = False
 
 API_KEY = os.environ['POLONIEX_API_KEY']
 API_SECRET = os.environ['POLONIEX_API_SECRET']
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -18,7 +18,7 @@ DATABASES = {
         'ATOMIC_REQUESTS': True,
     },
 }
-
+'''
 DEBUG_APPS = []
 
 # only required for pull_twitter.py
